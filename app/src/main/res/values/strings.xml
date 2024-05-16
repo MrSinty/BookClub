@@ -9,7 +9,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_profile">Profile</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_book_search">Books search</string>
     <string name="menu_book_gallery">My books</string>
 
     <string name="enter_login">Enter login</string>
@@ -25,4 +25,6 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="book_gallery">My books</string>
+    <string name="search_book_btn">Search books</string>
+    <string name="search_book_et">Write title or author</string>
 </resources>

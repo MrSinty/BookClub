@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BooksClubsApp</string>
+    <string name="navigation_drawer_open">Открыть панель навигации</string>
+    <string name="navigation_drawer_close">Закрыть панель навигации</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">example@example.com</string>
+    <string name="nav_header_desc">Шапка навигации</string>
+    <string name="action_settings">Настройки</string>
+    <string name="menu_home">Домашняя страница</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="menu_book_search">Поиск книг</string>
+    <string name="menu_book_gallery">Мои книги</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_email">Введите эл почту</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="log_in">Вход</string>
+    <string name="registration_text">Регистрация</string>
+    <string name="log_in_btn">Войти</string>
+    <string name="reg_btn">Создать новый аккаунт</string>
+    <string name="btn_to_reg">Здесь впервые? Присоединяйтесь</string>
+    <string name="btn_to_log_in">Назад ко входу в аккаунт</string>
+    <string name="open">Открыть</string>
+    <string name="close">Закрыть</string>
+    <string name="book_gallery">Мои книги</string>
+    <string name="search_book_btn">Искать книги</string>
+    <string name="search_book_et">Напишите название или автора</string>
+</resources>

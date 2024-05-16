@@ -1,6 +1,7 @@
 package com.example.navtest.ui.userLib
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,9 @@ import com.example.navtest.R
 import com.example.navtest.adapters.BookAdapter
 import com.example.navtest.booksData.Book
 import com.example.navtest.databinding.FragmentUserLibraryBinding
+import com.google.firebase.appcheck.internal.util.Logger.TAG
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class UserLibraryFragment: Fragment() {
     private lateinit var binding: FragmentUserLibraryBinding
@@ -24,6 +28,27 @@ class UserLibraryFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentUserLibraryBinding.inflate(inflater, container, false)
+
+        val db = FirebaseFirestore.getInstance()
+
+        // Ссылка на коллекцию книг
+        val booksCollection = db.collection("books")
+
+        // Получение данных о книгах из Firestore
+        booksCollection.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    // Здесь можно получить данные каждой книги и выполнить необходимые действия
+                    val bookTitle = document.getString("title")
+                    val bookAuthor = document.getString("author")
+                    val bookGenres = document.get("genres") as? List<String> // Пример получения списка жанров
+                    // Например, добавить данные в список книг и обновить адаптер RecyclerView
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Обработка ошибок при получении данных
+                Log.e(TAG, "Error getting documents: ", exception)
+            }
         return binding.root
     }
 
@@ -32,7 +57,9 @@ class UserLibraryFragment: Fragment() {
 
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = BookAdapter(books) { book -> onBookClicked(book) }
+        adapter = BookAdapter{ book ->
+            TODO("show user's library")
+        }
         recyclerView.adapter = adapter
 
         // Проверяем, есть ли у пользователя книги в библиотеке
