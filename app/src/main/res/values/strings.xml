@@ -10,6 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_book_gallery">My books</string>
 
     <string name="enter_login">Enter login</string>
     <string name="enter_email">Enter email</string>
@@ -23,4 +24,5 @@
     <string name="btn_to_log_in">Back to logging in</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="book_gallery">My books</string>
 </resources>
