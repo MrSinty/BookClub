@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.navtest.R
 import com.example.navtest.databinding.FragmentBookDetailBinding
+import com.example.navtest.kotlinUtils.capitalized
 
 class BookDetailFragment : Fragment() {
 
@@ -24,16 +26,17 @@ class BookDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Получение данных о книге из аргументов
         val args = BookDetailFragmentArgs.fromBundle(requireArguments())
-        binding.tvBookTitle.text = args.bookTitle
-        binding.tvBookAuthor.text = args.bookAuthor
-        binding.tvBookGenres.text = args.bookGenre
+        binding.tvBookTitle.text = args.bookTitle.split(' ').joinToString(" ") { it.capitalized() }
+        binding.tvBookAuthor.text = String.format("%s%s", getString(R.string.book_detailed_autor_textv),
+            args.bookAuthor.split(' ').joinToString(" ") { it.capitalized() })
+        binding.tvBookGenres.text = String.format("%s%s", getString(R.string.book_detailed_genres_textv),
+            args.bookGenre.split(", ").joinToString(", ") { it.capitalized() })
 
-        // Загрузка обложки книги с использованием Glide
         if (args.bookCoverUrl.isNotEmpty()) {
             Glide.with(this)
                 .load(args.bookCoverUrl)
+                .error(android.R.drawable.stat_notify_error)
                 .into(binding.ivBookCover)
         }
     }

@@ -15,6 +15,8 @@
     <string name="enter_email">Введите эл почту</string>
     <string name="enter_password">Введите пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
+    <string name="error_empty_login">Пожалуйста введите эл адрес и пароль</string>
+    <string name="error_empty_reg">Пожалуйста введите эл адрес, пароль и логин</string>
     <string name="log_in">Вход</string>
     <string name="registration_text">Регистрация</string>
     <string name="log_in_btn">Войти</string>
@@ -26,4 +28,12 @@
     <string name="book_gallery">Мои книги</string>
     <string name="search_book_btn">Искать книги</string>
     <string name="search_book_et">Напишите название или автора</string>
+    <string name="error_on_search">Ошибка при получении документов</string>
+    <string name="error_on_empty_search">Введите текст для поиска</string>
+    <string name="book_detailed_autor_textv">"Автор: "</string>
+    <string name="book_detailed_genres_textv">"Жанры: "</string>
+    <string name="error_not_equal_reg">Пароли не совпадают</string>
+    <string name="book_library_empty_text">У вас еще нет книг в библиотеке, добавьте и создайте новую</string>
+    <string name="book_library_add_book_btn">Добавить книгу</string>
+    <string name="book_library_create_book_btn">Создать книгу</string>
 </resources>

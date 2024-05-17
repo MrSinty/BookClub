@@ -16,6 +16,9 @@
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="error_empty_login">Please enter email and password</string>
+    <string name="error_empty_reg">Please enter email, password and login</string>
+    <string name="error_not_equal_reg">Passwords are not the same</string>
     <string name="log_in">Log in</string>
     <string name="registration_text">Registration</string>
     <string name="log_in_btn">Log in</string>
@@ -27,4 +30,14 @@
     <string name="book_gallery">My books</string>
     <string name="search_book_btn">Search books</string>
     <string name="search_book_et">Write title or author</string>
+
+    <string name="error_on_search">Error getting documents: </string>
+    <string name="error_on_empty_search">Enter text to search</string>
+
+    <string name="book_detailed_autor_textv">Author: </string>
+    <string name="book_detailed_genres_textv">Genres: </string>
+
+    <string name="book_library_empty_text">You do not have any books yet, add or create one!</string>
+    <string name="book_library_add_book_btn">Add Book</string>
+    <string name="book_library_create_book_btn">Create Book</string>
 </resources>

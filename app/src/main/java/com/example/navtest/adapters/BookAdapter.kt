@@ -1,22 +1,14 @@
 package com.example.navtest.adapters
 
-import android.os.Bundle
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.navtest.R
 import com.example.navtest.booksData.Book
 import com.example.navtest.databinding.ItemBookBinding
 import com.example.navtest.kotlinUtils.capitalized
-import java.util.Locale
+
 
 class BookAdapter(private val onItemClicked: (Book) -> Unit) :
     RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
@@ -50,8 +42,8 @@ class BookAdapter(private val onItemClicked: (Book) -> Unit) :
             binding.genresTextView.text = book.genre.joinToString(", "){ it.capitalized() }
 
             if (book.coverUrl.isNotEmpty()) {
-                Glide.with(binding.coverImageView.context)
-                    .load(book.coverUrl)
+                Glide.with(itemView.context).load(book.coverUrl)
+                    .error(android.R.drawable.stat_notify_error)
                     .into(binding.coverImageView)
             }
 

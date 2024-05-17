@@ -36,11 +36,11 @@ class RegisterFragment: Fragment() {
             val checkPassword = binding.etPasswordConfirm.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty() || login.isEmpty()) {
-                binding.tvError.text = "Please enter email, password and login"
+                binding.tvError.text = String.format("%s", getString(R.string.error_empty_reg))
                 binding.tvError.visibility = View.VISIBLE
             }
             else if (password != checkPassword){
-                binding.tvError.text = "Passwords are not the same"
+                binding.tvError.text = String.format("%s", getString(R.string.error_not_equal_reg))
                 binding.tvError.visibility = View.VISIBLE
             }
             else {
@@ -57,14 +57,12 @@ class RegisterFragment: Fragment() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    // Регистрация успешна
+
                     val user = auth.currentUser
                     binding.tvError.visibility = View.INVISIBLE
-                    // Переход на следующий экран, например, главный экран
                     findNavController().navigate(R.id.nav_login)
                 } else {
-                    // Регистрация не удалась, обработка ошибки
-                    // Например, вывод сообщения об ошибке
+
                     binding.tvError.text = task.exception?.message
                     binding.tvError.visibility = View.VISIBLE
                 }

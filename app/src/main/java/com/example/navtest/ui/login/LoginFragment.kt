@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
             val password = binding.etPassword.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                binding.tvError.text = "Please enter email and password"
+                binding.tvError.text = String.format("%s", getString(R.string.error_empty_login))
                 binding.tvError.visibility = View.VISIBLE
             } else {
                 signIn(email, password)
@@ -50,15 +50,14 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    // Вход успешен
+
                     val user = auth.currentUser
                     binding.tvError.visibility = View.INVISIBLE
-                    // Переход на следующий экран, например, главный экран
                     findNavController().navigate(R.id.nav_home)
                 } else {
-                    // Вход не удался, обработка ошибки
-                    // Например, вывод сообщения об ошибке
+
                     binding.tvError.text = task.exception?.message
+                    binding.tvError.visibility = View.VISIBLE
                 }
             }
     }

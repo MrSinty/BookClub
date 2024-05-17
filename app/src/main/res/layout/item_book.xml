@@ -8,9 +8,11 @@
     <!-- Обложка книги -->
     <ImageView
         android:id="@+id/coverImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="16dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@null"
         android:src="@mipmap/ic_launcher" />
 
     <!-- Информация о книге -->

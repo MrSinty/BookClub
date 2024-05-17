@@ -1,22 +1,17 @@
 package com.example.navtest.ui.userLib
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.navtest.R
 import androidx.navigation.fragment.findNavController
+import com.example.navtest.R
 import com.example.navtest.adapters.BookAdapter
 import com.example.navtest.booksData.Book
 import com.example.navtest.databinding.FragmentUserLibraryBinding
-import com.google.firebase.appcheck.internal.util.Logger.TAG
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 
 class UserLibraryFragment: Fragment() {
     private lateinit var bookAdapter: BookAdapter
@@ -48,28 +43,23 @@ class UserLibraryFragment: Fragment() {
             adapter = bookAdapter
         }
 
-        // Проверяем, есть ли у пользователя книги в библиотеке
         if (books.isEmpty()) {
 
-            Toast.makeText(context, "no books", Toast.LENGTH_SHORT).show()
-            // Если у пользователя нет книг, отображаем кнопки для добавления новых книг
             binding.tvNoBooks.visibility = View.VISIBLE
             binding.btnAddBook.visibility = View.VISIBLE
             binding.btnCreateBook.visibility = View.VISIBLE
 
             binding.btnAddBook.setOnClickListener {
-                // Открыть окно с поиском книг для добавления
-                // Например:
+
                 //findNavController().navigate(R.id.action_userLibraryFragment_to_searchBooksFragment)
             }
 
             binding.btnCreateBook.setOnClickListener {
-                // Открыть окно создания новой книги
-                // Например:
+
                 // findNavController().navigate(R.id.action_userLibraryFragment_to_createBookFragment)
             }
         } else {
-            // Если у пользователя есть книги, скрываем кнопки
+
             binding.tvNoBooks.visibility = View.GONE
             binding.btnAddBook.visibility = View.GONE
             binding.btnCreateBook.visibility = View.GONE
@@ -81,7 +71,7 @@ class UserLibraryFragment: Fragment() {
 
     private fun loadUserBooks() {
         val db = FirebaseFirestore.getInstance()
-        val userBooksCollection = db.collection("user_books") // Коллекция с книгами пользователя
+        val userBooksCollection = db.collection("user_books")
 
         userBooksCollection
             .get()
@@ -92,15 +82,8 @@ class UserLibraryFragment: Fragment() {
                 bookAdapter.setBooks(books)
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(context, "Error getting documents: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, String.format("%s%s", getString(R.string.error_on_search),
+                    exception.message), Toast.LENGTH_SHORT).show()
             }
     }
-
-//    private fun onBookClicked(book: Book) {
-//        // Обработка нажатия на книгу в списке
-//        // Открыть экран с подробной информацией о книге
-//        // Например:
-//        // val action = UserLibraryFragmentDirections.actionUserLibraryFragmentToBookDetailsFragment(book)
-//        // findNavController().navigate(action)
-//    }
 }

@@ -9,10 +9,12 @@
 
     <ImageView
         android:id="@+id/ivBookCover"
+        android:layout_marginTop="16dp"
         android:layout_width="200dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
+        android:contentDescription="@null"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -20,8 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Название книги"
-        android:textSize="24sp"
+        android:fontFamily="@font/inter"
+        android:textAllCaps="false"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <TextView
@@ -29,16 +32,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Автор книги"
-        android:textSize="18sp" />
+        android:fontFamily="@font/inter"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvBookGenres"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Жанры книги"
-        android:textSize="16sp" />
+        android:fontFamily="@font/inter"
+        android:textSize="18sp" />
 
     <!-- Здесь можете добавить другие элементы для отображения информации о книге -->
 
