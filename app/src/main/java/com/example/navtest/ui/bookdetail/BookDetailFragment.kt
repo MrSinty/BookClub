@@ -16,7 +16,7 @@ class BookDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBookDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -25,10 +25,10 @@ class BookDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Получение данных о книге из аргументов
-        val bookTitle = arguments?.getString("bookTitle")
-        val bookAuthor = arguments?.getString("bookAuthor")
-        val bookGenres = arguments?.getString("bookGenres")
-        val bookCoverUrl = arguments?.getString("bookCoverUrl")
+        val bookTitle = arguments?.getString("title")
+        val bookAuthor = arguments?.getString("author")
+        val bookGenres = arguments?.getString("genres")
+        val bookCoverUrl = arguments?.getString("coverUrl")
 
         // Установка данных на соответствующие элементы
         binding.tvBookTitle.text = bookTitle

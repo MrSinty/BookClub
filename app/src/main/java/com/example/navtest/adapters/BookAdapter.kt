@@ -13,55 +13,49 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.navtest.R
 import com.example.navtest.booksData.Book
+import com.example.navtest.databinding.ItemBookBinding
 
 class BookAdapter(private val onItemClicked: (Book) -> Unit) :
-    ListAdapter<Book, BookAdapter.BookViewHolder>(BookViewHolder.BookDiffCallback()) {
+    RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+
+    private var books: List<Book> = listOf()
+
+    fun setBooks(books: List<Book>) {
+        this.books = books
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_book, parent, false)
-        return BookViewHolder(view, onItemClicked)
+        val binding = ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return BookViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-        val book = getItem(position)
+        val book = books[position]
         holder.bind(book)
     }
 
-    class BookViewHolder(itemView: View, private val onItemClicked: (Book) -> Unit) :
-        RecyclerView.ViewHolder(itemView) {
+    override fun getItemCount() = books.size
 
-        private val bookCoverImageView: ImageView = itemView.findViewById(R.id.coverImageView)
-        private val bookTitleTextView: TextView = itemView.findViewById(R.id.titleTextView)
-        private val bookAuthorTextView: TextView = itemView.findViewById(R.id.authorTextView)
+    inner class BookViewHolder(private val binding: ItemBookBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(book: Book) {
-            bookTitleTextView.text = book.title
-            bookAuthorTextView.text = book.author
+            binding.titleTextView.text = book.title.split(' ').joinToString{ word -> word.replaceFirstChar { it.uppercase() }}
+            binding.authorTextView.text = book.author.split(' ').joinToString{ word -> word.replaceFirstChar { it.uppercase() }}
 
-            Glide.with(itemView.context)
+            for (genre in book.genres){
+                genre.split(' ').joinToString{ word -> word.replaceFirstChar { it.uppercase() }}
+            }
+
+            binding.genresTextView.text = book.genres.joinToString(", ")
+
+            Glide.with(binding.coverImageView.context)
                 .load(book.coverUrl)
-                .into(bookCoverImageView)
+                .into(binding.coverImageView)
 
-            itemView.setOnClickListener {
-                val bundle = Bundle().apply {
-                    putString("bookTitle", book.title)
-                    putString("bookAuthor", book.author)
-                    putString("bookGenres", book.genres.joinToString(", "))
-                    putString("bookCoverUrl", book.coverUrl)
-                }
-
-                TODO("сделать навигацию для bookDetail")
-                //itemView.findNavController().navigate(R.id.action_bookSearchFragment_to_bookDetailFragment, bundle)
-            }
-        }
-
-        class BookDiffCallback : DiffUtil.ItemCallback<Book>() {
-            override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-                return oldItem == newItem
+            binding.root.setOnClickListener {
+                onItemClicked(book)
             }
         }
     }
