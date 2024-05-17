@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.navtest.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
@@ -47,6 +48,13 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            navController.navigate(R.id.nav_home)
+        } else {
+            navController.navigate(R.id.nav_login)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -60,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun setLocale(context: Context, language: String) {
+    private fun setLocale(context: Context, language: String) {
         val locale = Locale(language)
         Locale.setDefault(locale)
 

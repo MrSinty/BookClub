@@ -25,20 +25,17 @@ class BookDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Получение данных о книге из аргументов
-        val bookTitle = arguments?.getString("title")
-        val bookAuthor = arguments?.getString("author")
-        val bookGenres = arguments?.getString("genres")
-        val bookCoverUrl = arguments?.getString("coverUrl")
-
-        // Установка данных на соответствующие элементы
-        binding.tvBookTitle.text = bookTitle
-        binding.tvBookAuthor.text = bookAuthor
-        binding.tvBookGenres.text = bookGenres
+        val args = BookDetailFragmentArgs.fromBundle(requireArguments())
+        binding.tvBookTitle.text = args.bookTitle
+        binding.tvBookAuthor.text = args.bookAuthor
+        binding.tvBookGenres.text = args.bookGenre
 
         // Загрузка обложки книги с использованием Glide
-        Glide.with(this)
-            .load(bookCoverUrl)
-            .into(binding.ivBookCover)
+        if (args.bookCoverUrl.isNotEmpty()) {
+            Glide.with(this)
+                .load(args.bookCoverUrl)
+                .into(binding.ivBookCover)
+        }
     }
 
     override fun onDestroyView() {

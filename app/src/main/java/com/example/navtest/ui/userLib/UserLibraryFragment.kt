@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.navtest.R
+import androidx.navigation.fragment.findNavController
 import com.example.navtest.adapters.BookAdapter
 import com.example.navtest.booksData.Book
 import com.example.navtest.databinding.FragmentUserLibraryBinding
@@ -37,7 +38,10 @@ class UserLibraryFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bookAdapter = BookAdapter {book ->
-        TODO("OPEN BOOK DETAIL")
+            val action = UserLibraryFragmentDirections.actionNavBookGalleryToNavBookDetail(
+                book.title, book.author, book.genre.joinToString(", "), book.coverUrl
+            )
+            findNavController().navigate(action)
         }
 
         binding.recyclerView.apply {
@@ -65,8 +69,6 @@ class UserLibraryFragment: Fragment() {
                 // findNavController().navigate(R.id.action_userLibraryFragment_to_createBookFragment)
             }
         } else {
-
-            Toast.makeText(context, "there are books", Toast.LENGTH_SHORT).show()
             // Если у пользователя есть книги, скрываем кнопки
             binding.tvNoBooks.visibility = View.GONE
             binding.btnAddBook.visibility = View.GONE
@@ -81,8 +83,6 @@ class UserLibraryFragment: Fragment() {
         val db = FirebaseFirestore.getInstance()
         val userBooksCollection = db.collection("user_books") // Коллекция с книгами пользователя
 
-        Toast.makeText(context, "trying find books", Toast.LENGTH_SHORT).show()
-
         userBooksCollection
             .get()
             .addOnSuccessListener { documents ->
@@ -91,19 +91,16 @@ class UserLibraryFragment: Fragment() {
                 }
                 bookAdapter.setBooks(books)
             }
-            .addOnCompleteListener {
-                Toast.makeText(context, "nothing found", Toast.LENGTH_SHORT).show()
-            }
             .addOnFailureListener { exception ->
                 Toast.makeText(context, "Error getting documents: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun onBookClicked(book: Book) {
-        // Обработка нажатия на книгу в списке
-        // Открыть экран с подробной информацией о книге
-        // Например:
-        // val action = UserLibraryFragmentDirections.actionUserLibraryFragmentToBookDetailsFragment(book)
-        // findNavController().navigate(action)
-    }
+//    private fun onBookClicked(book: Book) {
+//        // Обработка нажатия на книгу в списке
+//        // Открыть экран с подробной информацией о книге
+//        // Например:
+//        // val action = UserLibraryFragmentDirections.actionUserLibraryFragmentToBookDetailsFragment(book)
+//        // findNavController().navigate(action)
+//    }
 }

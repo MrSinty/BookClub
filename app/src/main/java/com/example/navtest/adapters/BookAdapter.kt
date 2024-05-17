@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.example.navtest.R
 import com.example.navtest.booksData.Book
 import com.example.navtest.databinding.ItemBookBinding
+import com.example.navtest.kotlinUtils.capitalized
+import java.util.Locale
 
 class BookAdapter(private val onItemClicked: (Book) -> Unit) :
     RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
@@ -41,18 +44,16 @@ class BookAdapter(private val onItemClicked: (Book) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(book: Book) {
-            binding.titleTextView.text = book.title.split(' ').joinToString{ word -> word.replaceFirstChar { it.uppercase() }}
-            binding.authorTextView.text = book.author.split(' ').joinToString{ word -> word.replaceFirstChar { it.uppercase() }}
 
-            for (genre in book.genres){
-                genre.split(' ').joinToString{ word -> word.replaceFirstChar { it.uppercase() }}
+            binding.titleTextView.text = book.title.split(' ').joinToString(" ") { it.capitalized() }
+            binding.authorTextView.text = book.author.split(' ').joinToString(" ") { it.capitalized() }
+            binding.genresTextView.text = book.genre.joinToString(", "){ it.capitalized() }
+
+            if (book.coverUrl.isNotEmpty()) {
+                Glide.with(binding.coverImageView.context)
+                    .load(book.coverUrl)
+                    .into(binding.coverImageView)
             }
-
-            binding.genresTextView.text = book.genres.joinToString(", ")
-
-            Glide.with(binding.coverImageView.context)
-                .load(book.coverUrl)
-                .into(binding.coverImageView)
 
             binding.root.setOnClickListener {
                 onItemClicked(book)
