@@ -1,22 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:weightSum="2.75"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/search_elem_background"
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/coverImageView"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Название книги -->
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="title"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Автор книги -->
+            <TextView
+                android:id="@+id/authorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="author"
+                android:textSize="18sp" />
+
+            <!-- Жанры книги -->
+            <TextView
+                android:id="@+id/genresTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="genres"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/button_clubs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="Clubs"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/main_red"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="15dp"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/button_books"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="Books"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/main_red"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="15dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/button_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="Profile"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/main_red"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="15dp"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/button_settings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="Settings"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/main_red"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="15dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

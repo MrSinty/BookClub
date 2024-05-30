@@ -3,47 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:background="@drawable/search_elem_background"
+    android:padding="16dp"
+    android:layout_margin="8dp">
 
-    <!-- Обложка книги -->
-    <ImageView
-        android:id="@+id/coverImageView"
-        android:layout_width="70dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="fitXY"
-        android:contentDescription="@null"
-        android:src="@mipmap/ic_launcher" />
+        <!-- Обложка книги -->
+        <ImageView
+            android:id="@+id/coverImageView"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="fitXY"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_launcher" />
 
-    <!-- Информация о книге -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        <!-- Информация о книге -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <!-- Название книги -->
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <!-- Название книги -->
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <!-- Автор книги -->
-        <TextView
-            android:id="@+id/authorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp" />
+            <!-- Автор книги -->
+            <TextView
+                android:id="@+id/authorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
 
-        <!-- Жанры книги -->
-        <TextView
-            android:id="@+id/genresTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp" />
+            <!-- Жанры книги -->
+            <TextView
+                android:id="@+id/genresTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
 
-    </LinearLayout>
-
+        </LinearLayout>
 </LinearLayout>
